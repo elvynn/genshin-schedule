@@ -4,10 +4,11 @@ const EventList = (props) => {
     console.log(props.events);
     return (
         <div>
+            
             <ul>
                 {props.events.length === 0 ? <li>start creating events</li> : 
-                    props.events.map( event => 
-                        <li>
+                    props.events.map( (event, key) => 
+                        <li key={key}>
                             <h3>{event.material}</h3>
                             <p>{event.name}</p>
                         </li>)
