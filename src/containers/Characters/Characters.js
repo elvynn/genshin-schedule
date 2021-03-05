@@ -1,25 +1,13 @@
-import { React, useState, useReducer, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import CharacterList from '../../components/CharacterList/CharacterList';
 import axios from "axios";
+import { Context } from '../../hoc/Store'
 
-function scheduleReducer(state, action){
-    switch (action.type){
-        case 'add':
-            return [...state, action.character];
-        case 'remove':
-            return [...state.filter(character => character.id !== action.character.id)];
-        default:
-            throw new Error("something went wrong");
-    }
-}
-
-const Characters = () => {
+const Characters = React.memo(() => {
     const [characterList, setCharacterList] = useState([]);
-    //const [schedule, setSchedule] = useState([]);
-    const[schedule, dispatchSchedule] = useReducer(scheduleReducer, []);
+    const [schedule, dispatchSchedule] = useContext(Context);
 
     useEffect(() => {
-        //Load first character list and put it to the state (if new user)
         axios.get('https://genshin-schedule-2156e-default-rtdb.firebaseio.com/Characters.json')
         .then( response => {
             const loadedCharacters = [];
@@ -32,17 +20,18 @@ const Characters = () => {
                 })
             }
             setCharacterList(loadedCharacters);
-        })
+        }).catch( error => console.log("error!"));
     },[]);
 
      const handleToggle = (character, schedule) => {
-        const obj = schedule.filter(item => item.name === character.name);
+        const obj = schedule.filter(item => item.id === character.id);
+
+        //Query
         if (obj.length !== 0) {  
-            dispatchSchedule( {character: character, type: "remove"} );
+            dispatchSchedule( {item: character, type: "remove"} );
         }else{
-            dispatchSchedule( {character: character, type: "add"} );
+            dispatchSchedule( {item: character, type: "add"} );
         }
-       
     }
 
     return (
@@ -51,6 +40,6 @@ const Characters = () => {
             <CharacterList characters={characterList} schedule={schedule} clicked={handleToggle} />
         </div>
     );
-};
+});
 
 export default Characters;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Header = () => {
     return (
@@ -10,7 +11,9 @@ const Header = () => {
                 </div>
                 <div>
                     <h2>Customize Schedule</h2>
-                    <div>navlinks</div>
+                    <NavLink to="/" exact> Schedule</NavLink>
+                    <NavLink to="/characters"> link2</NavLink>
+                    <NavLink to="/weapons"> link1</NavLink>
                 </div>
             </header>
         </div>
