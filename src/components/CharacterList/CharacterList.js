@@ -2,14 +2,15 @@ import React from 'react';
 import styles from './CharacterList.module.css';
 
 const CharacterList = (props) => {
-    //console.log(props.characters);
+    console.log(props.schedule);
+    console.log(props.characters);
     return (
         <ul className={styles.CharacterList}>
            {props.characters.map((character, index) =>  
             <li 
                 key={index} 
                 onClick={() => { props.clicked(character, props.schedule); }}
-                className={ character === props.schedule.find( x => x.name === character.name) ? 
+                className={ character === props.schedule.find( x => x.id === character.id) ? 
                     [styles.Scheduled, styles.Character].join(' ') : 
                     styles.Character}> 
                     <div className={styles.Portrait}>

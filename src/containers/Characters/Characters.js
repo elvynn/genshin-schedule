@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useCallback, useMemo } from 'react';
 import CharacterList from '../../components/CharacterList/CharacterList';
 import axios from "axios";
 import { Context } from '../../hoc/Store'
 
-const Characters = React.memo(() => {
+const Characters = () => {
     const [characterList, setCharacterList] = useState([]);
     const [schedule, dispatchSchedule] = useContext(Context);
 
@@ -23,7 +23,7 @@ const Characters = React.memo(() => {
         }).catch( error => console.log("error!"));
     },[]);
 
-     const handleToggle = (character, schedule) => {
+     const handleToggle = useCallback((character, schedule) => {
         const obj = schedule.filter(item => item.id === character.id);
 
         //Query
@@ -32,15 +32,20 @@ const Characters = React.memo(() => {
         }else{
             dispatchSchedule( {item: character, type: "add"} );
         }
-    }
+    },[])
+
+    const characterListItem = useMemo(() => {
+        return <CharacterList characters={characterList} schedule={schedule} clicked={handleToggle} />
+        
+    }, [characterList, schedule, handleToggle]);
 
     return (
         <div>
             this is the characters list
             <div>Filters</div>
-            <CharacterList characters={characterList} schedule={schedule} clicked={handleToggle} />
+            {characterListItem}
         </div>
     );
-});
+};
 
 export default Characters;

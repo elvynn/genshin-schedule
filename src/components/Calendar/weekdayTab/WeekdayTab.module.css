@@ -1,0 +1,19 @@
+.WeekdayTab{
+    margin-left: 0px;
+    padding-left: 0px;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-evenly;
+}
+.WeekdayTab li{
+    display: inline-block;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    transition: all 0.3s ease-in;
+}
+.Active, .WeekdayTab li:hover{
+    color: black !important;
+    background: white;
+    border-radius: 5px;
+}

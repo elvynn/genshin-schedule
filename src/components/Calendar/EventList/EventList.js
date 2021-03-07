@@ -1,16 +1,21 @@
 import React from 'react';
+import styles from './EventList.module.css';
 
 const EventList = (props) => {
-    console.log(props.events);
     return (
         <div>
-            
             <ul>
-                {props.events.length === 0 ? <li>start creating events</li> : 
+                {props.events.length === 0 ? <li>No events for this day</li> : 
                     props.events.map( (event, key) => 
                         <li key={key}>
+                            <div>
+                                <img src={"./assets/images/mats/"+event.material+".png"} alt={event.material} />
+                            </div>
+                            <div>
+                                <p>{event.name}</p>
+                            </div>
                             <h3>{event.material}</h3>
-                            <p>{event.name}</p>
+                            
                         </li>)
                 }
             </ul>

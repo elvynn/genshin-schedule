@@ -44,7 +44,7 @@ const Schedule = () => {
 
     return (
         <div>
-            <WeekdayTab clicked={handleTabs}/>
+            <WeekdayTab clicked={handleTabs} active={weekday} />
             <div>
                 <h2>Events for Monday</h2>
                 <EventList events={calendar} weekday={weekday} />
