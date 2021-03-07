@@ -7,14 +7,16 @@ import { BrowserRouter } from 'react-router-dom';
 
 
 const app = (
-  <BrowserRouter>
-    <App />
+  <BrowserRouter >
+    <App  />
   </BrowserRouter>
 )
 
 ReactDOM.render(
   <React.StrictMode>
-    {app}
+    <div className="main" style={{ backgroundImage: "url(/assets/images/ui/home-screen.jpg)" }}>
+      {app}
+    </div>
   </React.StrictMode>,
   document.getElementById('root')
 );

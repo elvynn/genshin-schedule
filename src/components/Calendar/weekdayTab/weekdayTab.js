@@ -1,14 +1,18 @@
 import React from 'react';
 
-const weekdayTab = (props) => {
+const WeekdayTab = (props) => {
     return (
         <div>
             <ul>
-                <li>Monday</li>
-                <li>Monday</li>
+                <li onClick={() => props.clicked("monday")}>Mon</li>
+                <li onClick={() => props.clicked("tuesday")}>Tue</li>
+                <li onClick={() => props.clicked("wednesday")}>Wed</li>
+                <li onClick={() => props.clicked("thursday")}>Thu</li>
+                <li onClick={() => props.clicked("friday")}>Fri</li>
+                <li onClick={() => props.clicked("sunday")}>Sun</li>
             </ul>
         </div>
     );
 };
 
-export default weekdayTab;
+export default WeekdayTab;

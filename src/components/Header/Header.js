@@ -11,9 +11,11 @@ const Header = () => {
                 </div>
                 <div>
                     <h2>Customize Schedule</h2>
-                    <NavLink to="/" exact> Schedule</NavLink>
-                    <NavLink to="/characters"> link2</NavLink>
-                    <NavLink to="/weapons"> link1</NavLink>
+                    <NavLink to="/characters"> Characters</NavLink>
+                    <NavLink to="/weapons"> Weapons</NavLink>
+                </div>
+                <div>
+                    <NavLink to="/" exact> Check schedule</NavLink>
                 </div>
             </header>
         </div>

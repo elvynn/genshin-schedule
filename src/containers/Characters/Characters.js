@@ -37,6 +37,7 @@ const Characters = React.memo(() => {
     return (
         <div>
             this is the characters list
+            <div>Filters</div>
             <CharacterList characters={characterList} schedule={schedule} clicked={handleToggle} />
         </div>
     );

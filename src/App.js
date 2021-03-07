@@ -9,12 +9,14 @@ import Store from './hoc/Store';
 
 function App() {
   return (
-    <Store>
-      <Header />
-      <Route path='/characters' component={Characters} />
-      <Route path='/weapons' component={Weapons} />
-      <Route path='/' exact component={Schedule} />
-      <footer> Footer</footer>
+    <Store >
+      <div className="container">
+        <Header />
+        <Route path='/characters' component={Characters} />
+        <Route path='/weapons' component={Weapons} />
+        <Route path='/' exact component={Schedule} />
+        <footer> Footer</footer>
+      </div>
     </Store>
   );
 }
