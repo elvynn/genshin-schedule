@@ -1,6 +1,6 @@
 import React, {createContext, useReducer} from "react";
 //Query
-const initialState = []
+const initialState = JSON.parse(localStorage.getItem('schedule')) || [];
 /*
 const initialState = {
     schedule: [],
@@ -10,9 +10,13 @@ const initialState = {
 function scheduleReducer(state, action){
     switch (action.type){
         case 'add':
-            return [...state, action.item];
+            const plusState = [...state, action.item];
+            localStorage.setItem('schedule', JSON.stringify(plusState));
+            return plusState;
         case 'remove':
-            return [...state.filter(i => i.id !== action.item.id)];
+            const minusState = [...state.filter(i => i.id !== action.item.id)];
+            localStorage.setItem('schedule', JSON.stringify(minusState));
+            return minusState;
         default:
             throw new Error("something went wrong");
     }

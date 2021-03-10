@@ -5,6 +5,7 @@ import { Context } from '../../hoc/Store'
 
 const Characters = () => {
     const [characterList, setCharacterList] = useState([]);
+
     const [schedule, dispatchSchedule] = useContext(Context);
 
     useEffect(() => {
@@ -21,6 +22,7 @@ const Characters = () => {
             }
             setCharacterList(loadedCharacters);
         }).catch( error => console.log("error!"));
+       
     },[]);
 
      const handleToggle = useCallback((character, schedule) => {
@@ -30,9 +32,20 @@ const Characters = () => {
         if (obj.length !== 0) {  
             dispatchSchedule( {item: character, type: "remove"} );
         }else{
-            dispatchSchedule( {item: character, type: "add"} );
+            /*axios.post(
+                'https://genshin-schedule-2156e-default-rtdb.firebaseio.com/schedule.json',
+                schedule
+              ).then(res => {
+                v
+              })
+              .catch(error => {
+                console.log(error)
+              })*/
+              dispatchSchedule( {item: character, type: "add"} );
+              console.log(schedule)
+              
         }
-    },[])
+    },[schedule])
 
     const characterListItem = useMemo(() => {
         return <CharacterList characters={characterList} schedule={schedule} clicked={handleToggle} />

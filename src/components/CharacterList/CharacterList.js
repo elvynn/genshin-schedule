@@ -2,8 +2,8 @@ import React from 'react';
 import styles from './CharacterList.module.css';
 
 const CharacterList = (props) => {
-    console.log(props.schedule);
-    console.log(props.characters);
+    //console.log(props.schedule);
+    //console.log(props.characters);
     return (
         <ul className={styles.CharacterList}>
            {props.characters.map((character, index) =>  
