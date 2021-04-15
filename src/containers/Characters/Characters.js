@@ -4,8 +4,8 @@ import axios from "axios";
 import { Context } from '../../hoc/Store'
 
 const Characters = () => {
+    //const [characterList, setCharacterList] = useState([]);
     const [characterList, setCharacterList] = useState([]);
-
     const [schedule, dispatchSchedule] = useContext(Context);
 
     useEffect(() => {
@@ -32,20 +32,10 @@ const Characters = () => {
         if (obj.length !== 0) {  
             dispatchSchedule( {item: character, type: "remove"} );
         }else{
-            /*axios.post(
-                'https://genshin-schedule-2156e-default-rtdb.firebaseio.com/schedule.json',
-                schedule
-              ).then(res => {
-                v
-              })
-              .catch(error => {
-                console.log(error)
-              })*/
-              dispatchSchedule( {item: character, type: "add"} );
-              console.log(schedule)
-              
+            dispatchSchedule( {item: character, type: "add"} );
+            console.log(schedule);
         }
-    },[schedule])
+    },[dispatchSchedule])
 
     const characterListItem = useMemo(() => {
         return <CharacterList characters={characterList} schedule={schedule} clicked={handleToggle} />
