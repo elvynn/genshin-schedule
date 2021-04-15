@@ -7,7 +7,6 @@ import WeekdayTab from '../../components/Calendar/WeekdayTab/WeekdayTab';
 const calendarReducer = (state, action) => {
     switch(action.day){
         case "monday":
-            //Create condition filter for monday materials
             return action.schedule.filter(i => (i.material === "freedom") || (i.material === "prosperity") );
         case "tuesday":
             return action.schedule.filter(i => i.material === "resistance" || (i.material === "digligence") );
@@ -46,7 +45,7 @@ const Schedule = () => {
         <div>
             <WeekdayTab clicked={handleTabs} active={weekday} />
             <div>
-                <h2>Events for Monday</h2>
+                <h2>Events for {weekday}</h2>
                 <EventList events={calendar} weekday={weekday} />
             </div>
         </div>
