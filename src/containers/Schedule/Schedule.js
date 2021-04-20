@@ -7,19 +7,52 @@ import WeekdayTab from '../../components/Calendar/WeekdayTab/WeekdayTab';
 const calendarReducer = (state, action) => {
     switch(action.day){
         case "monday":
-            return action.schedule.filter(i => (i.material === "freedom") || (i.material === "prosperity") );
+            const mon = [
+                { freedom: action.schedule.filter(i => (i.material === "freedom") )},
+                { prosperity: action.schedule.filter(i => (i.material === "prosperity")) }
+            ]
+            return mon;
+            //return action.schedule.filter(i => (i.material === "freedom") || (i.material === "prosperity") );
         case "tuesday":
-            return action.schedule.filter(i => i.material === "resistance" || (i.material === "digligence") );
+            const tue = [
+                { resistance: action.schedule.filter(i => (i.material === "resistance") )},
+                { digligence: action.schedule.filter(i => (i.material === "digligence")) }
+            ]
+            return tue;
         case "wednesday":
-            return action.schedule.filter(i => i.material === "ballad" || (i.material === "gold") );
+            const wed = [
+                { ballad: action.schedule.filter(i => (i.material === "ballad") )},
+                { gold: action.schedule.filter(i => (i.material === "gold")) }
+            ]
+            return wed;
         case "thursday":
-            return action.schedule.filter(i => (i.material === "freedom") || (i.material === "prosperity") );
+            const thu = [
+                { freedom: action.schedule.filter(i => (i.material === "freedom") )},
+                { prosperity: action.schedule.filter(i => (i.material === "prosperity")) }
+            ]
+            return thu;
         case "friday":
-            return action.schedule.filter(i => i.material === "resistance" || (i.material === "digligence") );
+            const fri = [
+                { resistance: action.schedule.filter(i => (i.material === "resistance") )},
+                { digligence: action.schedule.filter(i => (i.material === "digligence")) }
+            ]
+            return fri;
         case "saturday":
-            return action.schedule.filter(i => i.material === "ballad" || (i.material === "gold") );
+            const sat = [
+                { ballad: action.schedule.filter(i => (i.material === "ballad") )},
+                { gold: action.schedule.filter(i => (i.material === "gold")) }
+            ]
+            return sat;
         case "sunday":
-            return action.schedule;
+            const sun = [
+                { freedom: action.schedule.filter(i => (i.material === "freedom") )},
+                { prosperity: action.schedule.filter(i => (i.material === "prosperity")) },
+                { resistance: action.schedule.filter(i => (i.material === "resistance") )},
+                { digligence: action.schedule.filter(i => (i.material === "digligence")) },
+                { ballad: action.schedule.filter(i => (i.material === "ballad") )},
+                { gold: action.schedule.filter(i => (i.material === "gold")) }
+            ]
+            return sun;
         default:
             throw new Error("something went wrong");
     }
@@ -30,8 +63,8 @@ const Schedule = () => {
     const [schedule] = useContext(Context);
 
     //custom calendar by selected day
-    const [calendar, dispatchCalendar] = useReducer(calendarReducer,schedule);  
     const [weekday, setWeekday] = useState("monday");
+    const [calendar, dispatchCalendar] = useReducer(calendarReducer,[]);  
 
     useEffect(() => {
        dispatchCalendar({day: weekday, schedule: [...schedule]});
