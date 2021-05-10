@@ -1,4 +1,4 @@
-import React, {createContext, useReducer} from "react";
+import React, {createContext, useReducer, useState} from "react";
 //Query
 const initialState = JSON.parse(localStorage.getItem('schedule')) || [];
 /*
@@ -7,6 +7,9 @@ const initialState = {
     error: null
 };
 */
+
+
+
 function scheduleReducer(state, action){
     switch (action.type){
         case 'add':
@@ -24,6 +27,8 @@ function scheduleReducer(state, action){
 
 const Store = ({children}) => {
     const[schedule, dispatchSchedule] = useReducer(scheduleReducer, initialState);
+
+    const[userData, setUserData] = useState(null);
     return (
         <Context.Provider value={[schedule, dispatchSchedule]} >
             {children}
