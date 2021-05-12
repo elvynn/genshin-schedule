@@ -1,5 +1,7 @@
-import React, {useState} from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import AuthContext from '../../store/auth-context';
+
+//import { Redirect } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 
 import axios from 'axios'
@@ -11,6 +13,7 @@ import { useToggle } from '../../hooks/use-toggle';
 const Login = () => {
     const [isLogin, setIsLogin] = useToggle(true);
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const authCtx = useContext(AuthContext);
 
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
@@ -19,7 +22,7 @@ const Login = () => {
     const onSubmit = (data, e) => {
         //alert(JSON.stringify(data))
         if(isLogin){
-            //Login
+            //Login 
         }else{
             //Register
             setIsLoading(true);
@@ -31,14 +34,14 @@ const Login = () => {
               .then(function (response) {
                 setIsLoading(false);
                 setIsError(false);
-                //console.log(response);
+                authCtx.login(response.data.idToken, response.data.idToken, response.data.localId);
+                console.log(authCtx);
               })
               .catch(function (error) {
                   setIsLoading(false);
                   setIsError(true);
                   if (error.response) {
-                    // The request was made and the server responded with a status code
-                    // that falls out of the range of 2xx
+                    // The request was made and the server responded with a status code of the range of 2xx
                     alert(error.response.data.error.message);
                   } else if (error.request) {
                     // The request was made but no response was received
@@ -99,10 +102,10 @@ const Login = () => {
                     </p>
                 )}
 
-                <button>{isLogin ? 'Acceder' : 'Registrarme'}</button>
-                <button>Acceso anonimo</button>
+                <button>{isLogin ? 'Login' : 'Register'}</button>
+                <button>Guest mode</button>
             </form>
-            <button onClick={setIsLogin} >{isLogin ? 'Crear cuenta nueva' : 'Acceder con cuenta ya existente'}</button>
+            <button onClick={setIsLogin} >{isLogin ? 'Create new account' : 'Login with an existing account'}</button>
         </div>
     );
 };

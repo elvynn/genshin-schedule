@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, useCallback, useMemo } from 'react';
 import CharacterList from '../../components/CharacterList/CharacterList';
 import axios from "axios";
-import { Context } from '../../hoc/Store'
+import { Context } from '../../store/Store'
 
 const Characters = () => {
     //const [characterList, setCharacterList] = useState([]);

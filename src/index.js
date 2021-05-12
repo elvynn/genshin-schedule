@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-
+import { AuthContextProvider } from './store/auth-context';
 
 const app = (
   <BrowserRouter >
@@ -13,11 +13,13 @@ const app = (
 )
 
 ReactDOM.render(
-  <React.StrictMode>
-    <div className="main" style={{ backgroundImage: "url(/assets/images/ui/home-screen.jpg)" }}>
-      {app}
-    </div>
-  </React.StrictMode>,
+  <AuthContextProvider>
+    <React.StrictMode>
+      <div className="main" style={{ backgroundImage: "url(/assets/images/ui/home-screen.jpg)" }}>
+        {app}
+      </div>
+    </React.StrictMode>
+  </AuthContextProvider>,
   document.getElementById('root')
 );
 

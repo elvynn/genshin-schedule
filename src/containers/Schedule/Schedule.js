@@ -1,5 +1,5 @@
 import { React, useState, useContext, useEffect, useReducer } from 'react';
-import { Context } from '../../hoc/Store'
+import { Context } from '../../store/Store'
 import EventList  from '../../components/Calendar/EventList/EventList';
 import WeekdayTab from '../../components/Calendar/WeekdayTab/WeekdayTab';
 
