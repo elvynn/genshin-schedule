@@ -4,7 +4,8 @@ import AuthContext from '../../store/auth-context';
 //import { Redirect } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 
-import axios from 'axios'
+import axios from 'axios';
+import useAxios from 'axios-hooks';
 
 //Custom hooks
 import { useToggle } from '../../hooks/use-toggle';
@@ -16,7 +17,11 @@ const Login = () => {
     const authCtx = useContext(AuthContext);
 
     const [isLoading, setIsLoading] = useState(false);
-    const [isError, setIsError] = useState(false);
+    const[isError, setIsError] = useState(false);
+    const [{ data: getData, loading: getLoading, error: getError }] = useAxios(
+        "https://api.myjson.com/bins/820fc"
+      );
+   
     
 
     const onSubmit = (data, e) => {
@@ -35,7 +40,6 @@ const Login = () => {
                 setIsLoading(false);
                 setIsError(false);
                 authCtx.login(response.data.idToken, response.data.idToken, response.data.localId);
-                console.log(authCtx);
               })
               .catch(function (error) {
                   setIsLoading(false);
@@ -71,7 +75,7 @@ const Login = () => {
                     {...register("email", {
                         required: "Campo obligatorio",
                         pattern: {
-                            value: /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
+                            value: /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i,
                             message: "Introduzca un email valido"
                         }
                     })}

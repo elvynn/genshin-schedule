@@ -1,6 +1,8 @@
 import useReducer from 'react';
 import axios from 'axios';
 
+
+
 const httpReducer = (currentHttpState, action) => {
     switch (action.type) {
         case 'SEND':
@@ -19,7 +21,7 @@ const httpReducer = (currentHttpState, action) => {
 const useHttp = () => {
     const [httpState, dispatchHttp] = useReducer(httpReducer, {
         loading: false,
-        error: null
+        error: false
     });
 
     const sendRequest = (url, method, body) => {

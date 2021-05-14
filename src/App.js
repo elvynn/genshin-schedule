@@ -12,29 +12,38 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import Store from './store/Store';
 import AuthContext from "./store/auth-context";
 
-
-
 function App() {
   const authCtx = useContext(AuthContext);
   return (
     <Store >
       <div className="container">
-        <Header />
+        { authCtx.isLogin ?? <Header /> }
         <Switch>
           <Route path="/" exact>
+            {!authCtx.isLogin 
+              ? <Login />
+              : <Redirect to="/schedule" /> }
+          </Route> 
+          <Route exact path="/characters">
+            {authCtx.isLogin 
+              ? <Characters />
+              : <Redirect to="/" /> }
+          </Route>
+          <Route exact path="/weapons">
+            {authCtx.isLogin 
+              ?  <Weapons />
+              : <Redirect to="/" /> }
+          </Route>
+          <Route exact path="/schedule">
+            {authCtx.isLogin 
+              ?  <Schedule />
+              : <Redirect to="/" /> }
+          </Route>
+          <Route path="*">
             {authCtx.isLogin 
               ? <Login />
               : <Redirect to="/schedule" />  }
           </Route> 
-          <Route exact path="/characters">
-            <Characters />
-          </Route>
-          <Route path="/weapons">
-            <Weapons />
-          </Route>
-          <Route path="/schedule">
-            <Schedule />
-          </Route>
         </Switch>
         <footer> Footer</footer>
       </div>
