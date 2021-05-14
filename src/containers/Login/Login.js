@@ -1,10 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import AuthContext from '../../store/auth-context';
 
-//import { Redirect } from 'react-router-dom';
 import { useForm } from "react-hook-form";
-
-import axios from 'axios';
 import useAxios from 'axios-hooks';
 
 //Custom hooks
@@ -15,12 +12,21 @@ const Login = () => {
     const [isLogin, setIsLogin] = useToggle(true);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const authCtx = useContext(AuthContext);
+    
+    //Register fetch (post) with axios hook
+    const [{ 
+            data: registerData, 
+            loading: registerIsLoading, 
+            error: registerIsError }
+        , registerFetch
+    ] = useAxios({
+            url: 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBnX5D5Xxfx6LR7MucwMYeKAqZDhmFR0ls',
+            method: 'POST'
+        },
+        { manual: true }
+      )
 
-    const [isLoading, setIsLoading] = useState(false);
-    const[isError, setIsError] = useState(false);
-    const [{ data: getData, loading: getLoading, error: getError }] = useAxios(
-        "https://api.myjson.com/bins/820fc"
-      );
+     //Login fetch (post) with axios hook
    
     
 
@@ -30,39 +36,30 @@ const Login = () => {
             //Login 
         }else{
             //Register
-            setIsLoading(true);
-            axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBnX5D5Xxfx6LR7MucwMYeKAqZDhmFR0ls', {
-                email: data.email,
-                password: data.password,
-                returnSecureToken: true
-              })
-              .then(function (response) {
-                setIsLoading(false);
-                setIsError(false);
-                authCtx.login(response.data.idToken, response.data.idToken, response.data.localId);
-              })
-              .catch(function (error) {
-                  setIsLoading(false);
-                  setIsError(true);
-                  if (error.response) {
-                    // The request was made and the server responded with a status code of the range of 2xx
-                    alert(error.response.data.error.message);
-                  } else if (error.request) {
-                    // The request was made but no response was received
-                    console.log(error.request);
-                  } else {
-                    // Something happened in setting up the request that triggered an Error
-                    console.log('Error', error.message);
+            registerFetch({
+                data: {
+                    email: data.email,
+                    password: data.password,
+                    returnSecureToken: true
                   }
-              });
+            });
         }
     };
-    //const onError = (errors, e) => console.log(errors, e);
+
+    useEffect(() => {
+        if(registerData){
+            authCtx.login(registerData.idToken, registerData.idToken, registerData.localId);
+        }
+        if(registerIsError){
+            alert("Error!");
+            console.log("error: "+JSON.stringify(registerIsError));
+        }
+    }, [registerData, registerIsError]);
     
 
     return (
         <div> 
-            <p>{ isLoading ? "Cargando..." : "Login screen!" }</p>
+            <p>{ registerIsLoading ? "Loading..." : "Login screen!" }</p>
 
             <form onSubmit={handleSubmit(onSubmit)}>
                 <label htmlFor="email">Email</label>
