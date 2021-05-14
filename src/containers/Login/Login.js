@@ -13,53 +13,63 @@ const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const authCtx = useContext(AuthContext);
     
-    //Register fetch (post) with axios hook
-    const [{ 
-            data: registerData, 
-            loading: registerIsLoading, 
-            error: registerIsError }
-        , registerFetch
+    //Register axios hook
+    const [{ data: registerData,   loading: registerIsLoading,  error: registerIsError },
+        registerFetch
     ] = useAxios({
             url: 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBnX5D5Xxfx6LR7MucwMYeKAqZDhmFR0ls',
             method: 'POST'
         },
         { manual: true }
-      )
-
-     //Login fetch (post) with axios hook
+    );
+    //Login axios hook
+    const [{ data: loginData,   loading: loginIsLoading,  error: loginIsError },
+        loginFetch
+    ] = useAxios({
+            url: 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBnX5D5Xxfx6LR7MucwMYeKAqZDhmFR0ls',
+            method: 'POST'
+        },
+        { manual: true }
+    );
    
     
 
     const onSubmit = (data, e) => {
         //alert(JSON.stringify(data))
+        const formData = {
+            data: {
+                email: data.email,
+                password: data.password,
+                returnSecureToken: true
+              }
+        };
         if(isLogin){
             //Login 
+            loginFetch(formData);
         }else{
             //Register
-            registerFetch({
-                data: {
-                    email: data.email,
-                    password: data.password,
-                    returnSecureToken: true
-                  }
-            });
+            registerFetch(formData);
         }
     };
 
     useEffect(() => {
-        if(registerData){
-            authCtx.login(registerData.idToken, registerData.idToken, registerData.localId);
-        }
-        if(registerIsError){
-            alert("Error!");
-            console.log("error: "+JSON.stringify(registerIsError));
-        }
-    }, [registerData, registerIsError]);
+        if(registerData)  authCtx.login(registerData.idToken, registerData.idToken, registerData.localId); 
+        if(loginData)  authCtx.login(loginData.idToken, loginData.idToken, loginData.localId); 
+
+        if(registerIsError)  {
+            alert("error!");
+            console.log("error register: "+JSON.stringify(registerIsError));
+        };
+        if(loginIsError){
+            alert("Authentication failed!");
+            console.log("error login: "+JSON.stringify(loginIsError));
+        }  
+    }, [registerData, registerIsError, loginData, loginIsError]);
     
 
     return (
         <div> 
-            <p>{ registerIsLoading ? "Loading..." : "Login screen!" }</p>
+            <p>{ registerIsLoading || loginIsLoading ? "Loading..." : "Login screen!" }</p>
 
             <form onSubmit={handleSubmit(onSubmit)}>
                 <label htmlFor="email">Email</label>
