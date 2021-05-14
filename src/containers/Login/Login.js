@@ -31,8 +31,6 @@ const Login = () => {
         },
         { manual: true }
     );
-   
-    
 
     const onSubmit = (data, e) => {
         //alert(JSON.stringify(data))
@@ -53,8 +51,8 @@ const Login = () => {
     };
 
     useEffect(() => {
-        if(registerData)  authCtx.login(registerData.idToken, registerData.idToken, registerData.localId); 
-        if(loginData)  authCtx.login(loginData.idToken, loginData.idToken, loginData.localId); 
+        if(registerData)  authCtx.login(registerData.idToken, registerData.expiresIn, registerData.localId); 
+        if(loginData)  authCtx.login(loginData.idToken, loginData.expiresIn, loginData.localId); 
 
         if(registerIsError)  {
             alert("error!");
@@ -80,10 +78,10 @@ const Login = () => {
                     name="email"
                     placeholder="ej: nombre@email.com"
                     {...register("email", {
-                        required: "Campo obligatorio",
+                        required: "You must insert an email",
                         pattern: {
                             value: /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i,
-                            message: "Introduzca un email valido"
+                            message: "Please insert a valid email"
                         }
                     })}
                 />
@@ -93,17 +91,16 @@ const Login = () => {
                     </p>
                 )}
 
-
                 <input 
                     id="password" 
                     type="password" 
                     aria-invalid={errors.email ? "true" : "false"}
                     name="password"
                     {...register("password", {
-                        required: "Campo obligatorio",
+                        required: "You must insert a password",
                         minLength: {
                             value: 6,
-                            message: 'La contrasena debe contener almenos 6 caracteres' // JS only: <p>error message</p> TS only support string
+                            message: 'The password must have at least 6 characters' // JS only: <p>error message</p> TS only support string
                           }
                     })}
                 />
@@ -114,7 +111,7 @@ const Login = () => {
                 )}
 
                 <button>{isLogin ? 'Login' : 'Register'}</button>
-                <button>Guest mode</button>
+                { /*<button>Guest mode</button> */ }
             </form>
             <button onClick={setIsLogin} >{isLogin ? 'Create new account' : 'Login with an existing account'}</button>
         </div>

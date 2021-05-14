@@ -5,7 +5,7 @@ const AuthContext = createContext({
     token: "",
     expiration: "",
     uid: "",
-    login: (token, expiration) => {},
+    login: (token, expiration, uid) => {},
     logout: () => {}
 });
 
@@ -27,11 +27,17 @@ export function AuthContextProvider(props) {
     function loginHandler(token, expiration, uid){
         setUserToken(token);
         setUid(uid);
-        setExpirationDate(expiration);
+        handleExpiration(expiration);
     }
     function logoutHandler(){
         setUserToken("");
         setExpirationDate("");
+    }
+
+    function handleExpiration(expiration){
+        const expirationDate = new Date;
+
+        setExpirationDate(expirationDate);
     }
 
 
