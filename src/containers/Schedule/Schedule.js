@@ -3,6 +3,8 @@ import { Context } from '../../store/Store'
 import EventList  from '../../components/Calendar/EventList/EventList';
 import WeekdayTab from '../../components/Calendar/WeekdayTab/WeekdayTab';
 
+import styles from './Schedule.module.css';
+
 
 const calendarReducer = (state, action) => {
     switch(action.day){
@@ -78,7 +80,11 @@ const Schedule = () => {
         <div>
             <WeekdayTab clicked={handleTabs} active={weekday} />
             <div>
-                <h2>Events for {weekday}</h2>
+                <div className={styles.ScheduleHeader}>
+                    <img src="./assets/images/ui/paimon-event.png" alt="Paimon" />
+                    <h2>Events for {weekday} </h2>
+                </div>
+                
                 <EventList events={calendar} weekday={weekday} />
             </div>
         </div>

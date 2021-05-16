@@ -1,0 +1,38 @@
+
+
+.eventList h3{
+    color: #313131;
+}
+
+
+.eventList>li{
+    background-color: #F2F2F2;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 10px;
+    list-style-type: none;
+    display: block;
+    box-shadow: rgba(0,0,0,16) 0 3px 20px;
+    position: relative;
+    z-index: 10;
+}
+
+/* Character portraits*/
+.eventList, .eventList>li>ul{
+    margin-left: 0px;
+    padding-left: 0px;
+}
+.eventList>li>ul>li{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    overflow:hidden;
+}
+.eventList>li>ul>li img{
+    width: 100%;
+}
+
+.eventInfo{
+    display: flex;
+}

@@ -1,0 +1,30 @@
+.MainNav{
+    display: flex;
+    justify-content: space-between;
+}
+.MainNav div{
+    width: 45%;
+    margin-bottom: 20px;
+}
+.MainNav a{
+    display: block;
+    padding: 50px 0;
+    text-align: center;
+    background-color: #29404E;
+    color: white;
+    border-radius: 15px;
+    width:  100%;
+    text-decoration: none;
+}
+
+
+.ScheduleButton a{
+    display: block;
+    padding: 20px 0;
+    text-align: center;
+    background: #FFD257;
+    font-family: "Baskerville";
+    color: #504320;
+    text-decoration: none;
+    text-transform: uppercase;
+}

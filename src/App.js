@@ -17,7 +17,7 @@ function App() {
   return (
     <Store >
       <div className="container">
-        { authCtx.isLogin ?? <Header /> }
+        <Header /> 
         <Switch>
           <Route path="/" exact>
             {!authCtx.isLogin 

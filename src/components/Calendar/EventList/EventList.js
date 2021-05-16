@@ -6,19 +6,18 @@ let eventList = "<li>No events for this day</li>";
 
 
 const EventList = (props) => {
-
-    //Primero listado de materiales, luego anadimos pjs en listado. 
-    //deberia gestionarse en reducer schedule
     return (
         <div>
             <ul className={styles.eventList}> 
                 {props.events.length === 0 ? <li>No events for this day</li> : 
                 props.events.map( (event, key) => 
                 <li key={key}>
-                    <div>
-                        <img src={"./assets/images/mats/"+Object.keys(event)+".png"} alt={Object.keys(event)} />
+                    <div className={styles.eventInfo}>
+                        <div>
+                            <img src={"./assets/images/mats/"+Object.keys(event)+".png"} alt={Object.keys(event)} />
+                        </div>
+                        <h3>{Object.keys(event)}</h3>
                     </div>
-                    <h3>{Object.keys(event)}</h3>
                     <ul>
                         {event[Object.keys(event)].map((item, key) => 
                             <li key={key}>
