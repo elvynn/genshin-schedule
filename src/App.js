@@ -14,10 +14,12 @@ import AuthContext from "./store/auth-context";
 
 function App() {
   const authCtx = useContext(AuthContext);
+  let header=""; 
+  if(authCtx.isLogin) header=<Header />;
   return (
     <Store >
       <div className="container">
-        <Header /> 
+       { header }
         <Switch>
           <Route path="/" exact>
             {!authCtx.isLogin 

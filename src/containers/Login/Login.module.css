@@ -1,0 +1,66 @@
+.LoginFormContainer{
+    width: 100%;
+    max-width: 500px;
+    background-color: #F2F2F2;
+    border-radius: 10px;
+    padding: 10px;
+    display: block;
+    box-shadow: rgba(0,0,0,16) 0 3px 20px;
+    box-sizing: border-box;
+    font-family: "Baskerville", serif;
+    margin-bottom: 20px;
+}
+
+.FieldGroup{
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+.FieldGroup label{
+    display: block;
+    margin-bottom: 5px;
+    color: rgb(26, 26, 26);
+    font-weight: 500;
+}
+
+.FieldGroup input{
+    padding: 10px 15px;
+    font-size: 18px;
+    border-radius: 20px;
+    border: 0px;
+    width: 100%;
+    border: 2px solid  #29404E;
+    transition: all 0.2s ease-in;
+    box-sizing: border-box;
+    font-family: "Baskerville", serif;
+}
+.FieldGroup input:focus{
+    border: 2px solid #63c9c2;
+    outline: none;
+    background-color: #f0fefe;
+}
+.FieldGroup input[aria-invalid=true]{
+    border-color: rgb(215, 53, 91);
+}
+.FieldError{
+    color: rgb(215, 53, 91);
+}
+
+.LoginButton{
+    background-color: #FFD257;
+    border: 0px;
+    text-align: center;
+    padding: 15px;
+    width: 100%;
+    font-family: "Baskerville", serif;
+    text-transform: uppercase;
+}
+
+.Toggle{
+    background: transparent;
+    border: 0px;
+    font-family: "Baskerville", serif;
+    width: 100%;
+    text-align: center;
+    color: #02F7FB;
+    font-weight: 700;
+}

@@ -9,16 +9,16 @@ import styles from './Schedule.module.css';
 const calendarReducer = (state, action) => {
     switch(action.day){
         case "monday":
+            console.log(action.schedule)
             const mon = [
                 { freedom: action.schedule.filter(i => (i.material === "freedom") )},
                 { prosperity: action.schedule.filter(i => (i.material === "prosperity")) }
             ]
             return mon;
-            //return action.schedule.filter(i => (i.material === "freedom") || (i.material === "prosperity") );
         case "tuesday":
             const tue = [
                 { resistance: action.schedule.filter(i => (i.material === "resistance") )},
-                { digligence: action.schedule.filter(i => (i.material === "digligence")) }
+                { digligence: action.schedule.filter(i => (i.material === "diligence")) }
             ]
             return tue;
         case "wednesday":
@@ -36,7 +36,7 @@ const calendarReducer = (state, action) => {
         case "friday":
             const fri = [
                 { resistance: action.schedule.filter(i => (i.material === "resistance") )},
-                { digligence: action.schedule.filter(i => (i.material === "digligence")) }
+                { digligence: action.schedule.filter(i => (i.material === "diligence")) }
             ]
             return fri;
         case "saturday":
@@ -50,7 +50,7 @@ const calendarReducer = (state, action) => {
                 { freedom: action.schedule.filter(i => (i.material === "freedom") )},
                 { prosperity: action.schedule.filter(i => (i.material === "prosperity")) },
                 { resistance: action.schedule.filter(i => (i.material === "resistance") )},
-                { digligence: action.schedule.filter(i => (i.material === "digligence")) },
+                { digligence: action.schedule.filter(i => (i.material === "diligence")) },
                 { ballad: action.schedule.filter(i => (i.material === "ballad") )},
                 { gold: action.schedule.filter(i => (i.material === "gold")) }
             ]

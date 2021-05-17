@@ -7,6 +7,8 @@ import useAxios from 'axios-hooks';
 //Custom hooks
 import { useToggle } from '../../hooks/use-toggle';
 
+import styles from "./Login.module.css";
+
 
 const Login = () => {
     const [isLogin, setIsLogin] = useToggle(true);
@@ -14,16 +16,14 @@ const Login = () => {
     const authCtx = useContext(AuthContext);
     
     //Register axios hook
-    const [{ data: registerData,   loading: registerIsLoading,  error: registerIsError },
-        registerFetch
-    ] = useAxios({
+    const [{ data: registerData, loading: registerIsLoading, error: registerIsError }, registerFetch ] = useAxios({
             url: 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBnX5D5Xxfx6LR7MucwMYeKAqZDhmFR0ls',
             method: 'POST'
         },
         { manual: true }
     );
     //Login axios hook
-    const [{ data: loginData,   loading: loginIsLoading,  error: loginIsError },
+    const [{ data: loginData, loading: loginIsLoading,  error: loginIsError },
         loginFetch
     ] = useAxios({
             url: 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBnX5D5Xxfx6LR7MucwMYeKAqZDhmFR0ls',
@@ -66,55 +66,61 @@ const Login = () => {
     
 
     return (
-        <div> 
-            <p>{ registerIsLoading || loginIsLoading ? "Loading..." : "Login screen!" }</p>
-
+        <React.Fragment>
+        <div className={styles.LoginFormContainer}> 
+            <p>{ registerIsLoading || loginIsLoading ? "Loading..." : "Welcome message here" }</p>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <label htmlFor="email">Email</label>
-                <input 
-                    id="email" 
-                    type="text" 
-                    aria-invalid={errors.email ? "true" : "false"}
-                    name="email"
-                    placeholder="ej: nombre@email.com"
-                    {...register("email", {
-                        required: "You must insert an email",
-                        pattern: {
-                            value: /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i,
-                            message: "Please insert a valid email"
-                        }
-                    })}
-                />
-                {errors.email && (
-                    <p role="alert">
-                     {errors.email.message}
-                    </p>
-                )}
+                <div className={styles.FieldGroup}>
+                    <label htmlFor="email">Email</label>
+                    <input 
+                        id="email" 
+                        type="text" 
+                        aria-invalid={errors.email ? "true" : "false"}
+                        name="email"
+                        placeholder="name@example.com"
+                        {...register("email", {
+                            required: "The field cannot be empty",
+                            pattern: {
+                                value: /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i,
+                                message: "Please insert a valid email"
+                            }
+                        })}
+                    />
+                    {errors.email && (
+                        <p role="alert"  className={styles.FieldError}>
+                        {errors.email.message}
+                        </p>
+                    )}
+                </div>
 
-                <input 
-                    id="password" 
-                    type="password" 
-                    aria-invalid={errors.email ? "true" : "false"}
-                    name="password"
-                    {...register("password", {
-                        required: "You must insert a password",
-                        minLength: {
-                            value: 6,
-                            message: 'The password must have at least 6 characters' // JS only: <p>error message</p> TS only support string
-                          }
-                    })}
-                />
-                {errors.password && (
-                    <p role="alert">
-                     {errors.password.message}
-                    </p>
-                )}
+                <div className={styles.FieldGroup}>
+                    <label htmlFor="password">Password</label>
+                    <input 
+                        id="password" 
+                        type="password" 
+                        aria-invalid={errors.password ? "true" : "false"}
+                        name="password"
+                        {...register("password", {
+                            required: "The field cannot be empty",
+                            minLength: {
+                                value: 6,
+                                message: 'The password must have at least 6 characters'
+                            }
+                        })}
+                    />
+                    {errors.password && (
+                        <p role="alert" className={styles.FieldError}>
+                        {errors.password.message}
+                        </p>
+                    )}
+                </div>
 
-                <button>{isLogin ? 'Login' : 'Register'}</button>
+                <button className={styles.LoginButton}>{isLogin ? 'Log in' : 'Sign up'}</button>
                 { /*<button>Guest mode</button> */ }
             </form>
-            <button onClick={setIsLogin} >{isLogin ? 'Create new account' : 'Login with an existing account'}</button>
         </div>
+        <button onClick={setIsLogin} className={styles.Toggle}>{isLogin ? 'Create new account' : 'Login with an existing account'}</button>
+        </React.Fragment>
     );
 };
 

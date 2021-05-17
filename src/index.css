@@ -18,4 +18,5 @@ code {
   background-size: cover;
   background-attachment: fixed;
   margin-top: '50px';
+  padding: 15px;
 }
