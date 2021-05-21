@@ -47,7 +47,6 @@ function App() {
               : <Redirect to="/schedule" />  }
           </Route> 
         </Switch>
-        <footer> Footer</footer>
       </div>
     </Store>
   );

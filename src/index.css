@@ -14,9 +14,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#root, .main{
+  min-height: 100vh;
+  box-sizing: border-box;
+}
 .main{
   background-size: cover;
   background-attachment: fixed;
   margin-top: '50px';
   padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-position: fixed;
 }

@@ -4,10 +4,13 @@ import AuthContext from '../../store/auth-context';
 import { useForm } from "react-hook-form";
 import useAxios from 'axios-hooks';
 
+import BounceLoader from "react-spinners/BounceLoader";
+
 //Custom hooks
 import { useToggle } from '../../hooks/use-toggle';
 
 import styles from "./Login.module.css";
+
 
 
 const Login = () => {
@@ -63,12 +66,24 @@ const Login = () => {
             console.log("error login: "+JSON.stringify(loginIsError));
         }  
     }, [registerData, registerIsError, loginData, loginIsError]);
+
+    let loginButton = 'Log in';
+    if (!isLogin){
+        loginButton = 'Sign up';
+    }
+    if(registerIsLoading || loginIsLoading){
+        loginButton = <BounceLoader color={"#fff"} loading={true} size={25} />;
+    }
     
 
     return (
         <React.Fragment>
         <div className={styles.LoginFormContainer}> 
-            <p>{ registerIsLoading || loginIsLoading ? "Loading..." : "Welcome message here" }</p>
+            <div  className={styles.Paimon}>
+                <img src="./assets/images/ui/paimon.png" alt="Paimon's welcome" />
+            </div>
+            <h1>Paimon`s schedule </h1>
+            <p>Weekly events schedule for Genshin Impact.</p>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className={styles.FieldGroup}>
                     <label htmlFor="email">Email</label>
@@ -98,6 +113,7 @@ const Login = () => {
                     <input 
                         id="password" 
                         type="password" 
+                        placeholder="password"
                         aria-invalid={errors.password ? "true" : "false"}
                         name="password"
                         {...register("password", {
@@ -114,12 +130,12 @@ const Login = () => {
                         </p>
                     )}
                 </div>
-
-                <button className={styles.LoginButton}>{isLogin ? 'Log in' : 'Sign up'}</button>
-                { /*<button>Guest mode</button> */ }
+                
+                <button className={styles.LoginButton}>{loginButton}</button>
+                { /*<button>Log in as guest</button> */ }
             </form>
         </div>
-        <button onClick={setIsLogin} className={styles.Toggle}>{isLogin ? 'Create new account' : 'Login with an existing account'}</button>
+        <button onClick={setIsLogin} className={styles.Toggle}>{isLogin ? 'I want to create a new account' : 'I want to log in with an existing account'}</button>
         </React.Fragment>
     );
 };

@@ -6,23 +6,26 @@ const WeekdayTab = (props) => {
         <div>
             <ul className={styles.WeekdayTab}>
                 <li 
-                    onClick={() => props.clicked("monday")} 
-                    className={ props.active === "monday" ? styles.Active : null }>Mon</li>
+                    onClick={() => props.clicked("Monday")} 
+                    className={ props.active === "Monday" ? styles.Active : null }>Mon</li>
                 <li 
-                    onClick={() => props.clicked("tuesday")}
-                    className={ props.active === "tuesday" ? styles.Active : null }>Tue</li>
+                    onClick={() => props.clicked("Tuesday")}
+                    className={ props.active === "Tuesday" ? styles.Active : null }>Tue</li>
                 <li 
-                    onClick={() => props.clicked("wednesday")}
-                    className={ props.active === "wednesday" ? styles.Active : null }>Wed</li>
+                    onClick={() => props.clicked("Wednesday")}
+                    className={ props.active === "Wednesday" ? styles.Active : null }>Wed</li>
                 <li 
-                    onClick={() => props.clicked("thursday")}
-                    className={ props.active === "thursday" ? styles.Active : null }>Thu</li>
+                    onClick={() => props.clicked("Thursday")}
+                    className={ props.active === "Thursday" ? styles.Active : null }>Thu</li>
                 <li 
-                    onClick={() => props.clicked("friday")}
-                    className={ props.active === "friday" ? styles.Active : null }>Fri</li>
+                    onClick={() => props.clicked("Friday")}
+                    className={ props.active === "Friday" ? styles.Active : null }>Fri</li>
                 <li 
-                    onClick={() => props.clicked("sunday")}
-                    className={ props.active === "sunday" ? styles.Active : null }>Sun</li>
+                    onClick={() => props.clicked("Saturday")}
+                    className={ props.active === "Saturday" ? styles.Active : null }>Sat</li>
+                <li 
+                    onClick={() => props.clicked("Sunday")}
+                    className={ props.active === "Sunday" ? styles.Active : null }>Sun</li>
             </ul>
         </div>
     );

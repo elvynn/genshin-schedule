@@ -27,8 +27,6 @@ function scheduleReducer(state, action){
 
 const Store = ({children}) => {
     const[schedule, dispatchSchedule] = useReducer(scheduleReducer, initialState);
-
-    const[userData, setUserData] = useState(null);
     return (
         <Context.Provider value={[schedule, dispatchSchedule]} >
             {children}
