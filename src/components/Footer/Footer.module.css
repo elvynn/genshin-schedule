@@ -1,0 +1,11 @@
+.Footer{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    padding: 1rem;
+    margin-top: 2rem;
+    text-align: center;
+}
+.Footer svg{
+    fill: white;
+}

@@ -44,7 +44,7 @@ const Characters = () => {
 
     return (
         <div>
-            this is the characters list
+            <h2>Characters</h2>
             <div>Filters</div>
             {characterListItem}
         </div>

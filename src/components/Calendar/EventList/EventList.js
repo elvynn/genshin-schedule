@@ -12,18 +12,25 @@ const EventList = (props) => {
                         event[Object.keys(event)].length ? 
                             (<li key={key}>
                             <div className={styles.eventInfo}>
-                                <div>
+                                <div className={styles.Material}>
                                     <img src={"./assets/images/mats/"+Object.keys(event)+".png"} alt={Object.keys(event)} />
                                 </div>
-                                <h3>{Object.keys(event)}</h3>
+                                <div>
+                                    <h3>{Object.keys(event)}</h3>
+                                    <p> <img src="./assets/images/ui/dominio.png" alt="domain" /> <strong>Domain of Mastery:</strong> Frozen Abyss</p>
+
+                                    {/* Character loop */}
+                                    <ul>
+                                        {event[Object.keys(event)].map((item, key) => 
+                                            <li key={key}>
+                                                <img src={"./assets/images/characters/"+item.id+".png"} alt={item.id} />
+                                            </li>
+                                        )}
+                                    </ul>
+                                </div>
                             </div>
-                            <ul>
-                                {event[Object.keys(event)].map((item, key) => 
-                                    <li key={key}>
-                                        <img src={"./assets/images/characters/"+item.id+".png"} alt={item.id} />
-                                    </li>
-                                )}
-                            </ul>
+
+                            
                         </li>) : null)
                 }
             </ul>

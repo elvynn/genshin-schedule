@@ -11,6 +11,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 
 import Store from './store/Store';
 import AuthContext from "./store/auth-context";
+import Footer from './components/Footer/Footer';
 
 function App() {
   const authCtx = useContext(AuthContext);
@@ -48,6 +49,7 @@ function App() {
           </Route> 
         </Switch>
       </div>
+      <Footer />
     </Store>
   );
 }

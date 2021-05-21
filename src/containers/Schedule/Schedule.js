@@ -17,7 +17,7 @@ const calendarReducer = (state, action) => {
         case "Tuesday":
             const tue = [
                 { resistance: action.schedule.filter(i => (i.material === "resistance") )},
-                { digligence: action.schedule.filter(i => (i.material === "diligence")) }
+                { diligence: action.schedule.filter(i => (i.material === "diligence")) }
             ]
             return tue;
         case "Wednesday":
@@ -35,7 +35,7 @@ const calendarReducer = (state, action) => {
         case "Friday":
             const fri = [
                 { resistance: action.schedule.filter(i => (i.material === "resistance") )},
-                { digligence: action.schedule.filter(i => (i.material === "diligence")) }
+                { diligence: action.schedule.filter(i => (i.material === "diligence")) }
             ]
             return fri;
         case "Saturday":
@@ -49,7 +49,7 @@ const calendarReducer = (state, action) => {
                 { freedom: action.schedule.filter(i => (i.material === "freedom") )},
                 { prosperity: action.schedule.filter(i => (i.material === "prosperity")) },
                 { resistance: action.schedule.filter(i => (i.material === "resistance") )},
-                { digligence: action.schedule.filter(i => (i.material === "diligence")) },
+                { diligence: action.schedule.filter(i => (i.material === "diligence")) },
                 { ballad: action.schedule.filter(i => (i.material === "ballad") )},
                 { gold: action.schedule.filter(i => (i.material === "gold")) }
             ]

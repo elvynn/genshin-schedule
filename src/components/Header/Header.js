@@ -25,14 +25,14 @@ const Header = () => {
                         <div>
                             <NavLink to="/weapons" activeClassName={styles.Active}> 
                                 <img alt="characters" src={'./assets/images/ui/paimon-icon.png'} />
-                                <span>Weapons</span>
+                                <span>Weapons(soon)</span>
                             </NavLink>
                         </div>
                     </nav>
                 </div>
                 <Route path="/characters">
                  <div className={styles.ScheduleButton}>
-                    <NavLink to="/schedule" exact> Go to schedule</NavLink>
+                    <NavLink to="/schedule" exact> Go back to schedule</NavLink>
                 </div>
                 </Route>
                 <Route path="/weapons">

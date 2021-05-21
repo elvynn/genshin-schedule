@@ -33,6 +33,7 @@
 }
 .MainNav a:hover{
     background:#334a58;
+    box-shadow: rgba(0,0,0,0.2) 0 3px 10px;
 }
 
 .ScheduleButton a{
