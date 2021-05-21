@@ -13,7 +13,7 @@
     transition: all 0.3s ease-in;
     cursor: pointer;
 }
-.Active, .WeekdayTab li:hover{
+.Active, .WeekdayTab li:hover, .WeekdayTab li:focus, .WeekdayTab li:active{
     color: #29404E !important;
     background: #f2f2f2;
     border-radius: 5px;
@@ -23,3 +23,8 @@
     box-shadow: rgba(0,0,0,10) 0 3px 10px;
 }
 
+@media screen and (max-width: 769px){
+    .WeekdayTab li{
+    padding: 1rem 0.5rem;
+    }
+}

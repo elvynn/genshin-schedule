@@ -1,10 +1,11 @@
 .Footer{
     position: absolute;
-    width: 100%;
-    bottom: 0;
     padding: 1rem;
     margin-top: 2rem;
-    text-align: center;
+    box-sizing: border-box;
+    text-align: right;
+    right: 1rem;
+    top: 1rem
 }
 .Footer svg{
     fill: white;

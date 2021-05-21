@@ -17,6 +17,8 @@
 - Guest login
 - Improve forms ux and validation errors
 - Tooltips expanding character info
+- Update database
+- Animations
 
 ## Available Scripts
 

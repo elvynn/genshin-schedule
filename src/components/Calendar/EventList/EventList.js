@@ -1,6 +1,14 @@
 import React from 'react';
 import styles from './EventList.module.css';
 
+const domains = {
+    freedom: "Forsaken Rift",
+    prosperity: " Taishan Mansion",
+    resistance: "Forsaken Rift",
+    diligence: " Taishan Mansion",
+    ballad: "Forsaken Rift",
+    gold: " Taishan Mansion"
+}
 
 const EventList = (props) => {
     return (
@@ -17,7 +25,7 @@ const EventList = (props) => {
                                 </div>
                                 <div>
                                     <h3>{Object.keys(event)}</h3>
-                                    <p> <img src="./assets/images/ui/dominio.png" alt="domain" /> <strong>Domain of Mastery:</strong> Frozen Abyss</p>
+                                    <p> <img src="./assets/images/ui/dominio.png" alt="domain" /><strong>Domain of Mastery: </strong> {domains[Object.keys(event)]}</p>
 
                                     {/* Character loop */}
                                     <ul>

@@ -25,6 +25,7 @@
 }
 .Portrait img{
     margin-bottom: -3px;
+    width: 100%;
 }
 .Character span{
     display: block;
