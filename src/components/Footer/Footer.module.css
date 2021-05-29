@@ -7,6 +7,11 @@
     right: 1rem;
     top: 1rem
 }
+@media screen and (max-width: 768px){
+    .Footer{
+        margin-top: 0rem;
+    }
+}
 .Footer svg{
     fill: white;
 }
