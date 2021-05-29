@@ -1,21 +1,29 @@
 import React from 'react';
 import styles from './EventList.module.css';
+import { Link } from "react-router-dom";
 
 const domains = {
     freedom: "Forsaken Rift",
-    prosperity: " Taishan Mansion",
+    prosperity: "Taishan Mansion",
     resistance: "Forsaken Rift",
-    diligence: " Taishan Mansion",
+    diligence: "Taishan Mansion",
     ballad: "Forsaken Rift",
-    gold: " Taishan Mansion"
+    gold: "Taishan Mansion"
 }
 
 const EventList = (props) => {
+    let isSchedule = false;
+    props.events.map((event, key) =>  event[Object.keys(event)].length ? isSchedule = true : null );
+    console.log(isSchedule);
     return (
         <div>
             <ul className={styles.eventList}> 
-                {props.events.length === 0 
-                    ? <li>No events for this day</li> 
+                {!isSchedule 
+                    ? <li>
+                        <div className={styles.eventInfo}>
+                            <p className="text-center m-0">No events for this day, <Link to="/characters">start adding your characters!</Link> (weapons soon)</p>
+                        </div>
+                     </li> 
                     : props.events.map( (event, key) => 
                         event[Object.keys(event)].length ? 
                             (<li key={key}>
