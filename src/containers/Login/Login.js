@@ -53,6 +53,10 @@ const Login = () => {
         }
     };
 
+    const handleGuest = () => {
+        authCtx.login("guest", "guest", "guest");
+    }
+
     useEffect(() => {
         if(registerData)  authCtx.login(registerData.idToken, registerData.expiresIn, registerData.localId); 
         if(loginData)  authCtx.login(loginData.idToken, loginData.expiresIn, loginData.localId); 
@@ -130,10 +134,10 @@ const Login = () => {
                         </p>
                     )}
                 </div>
-                
                 <button className={styles.LoginButton}>{loginButton}</button>
-                { /*<button>Log in as guest</button> */ }
             </form>
+            <button onClick={handleGuest}>Access without account</button> 
+
         </div>
         <button onClick={setIsLogin} className={styles.Toggle}>{isLogin ? 'I want to create a new account' : 'I want to log in with an existing account'}</button>
         </React.Fragment>

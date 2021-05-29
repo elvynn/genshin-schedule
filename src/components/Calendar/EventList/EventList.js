@@ -14,7 +14,6 @@ const domains = {
 const EventList = (props) => {
     let isSchedule = false;
     props.events.map((event, key) =>  event[Object.keys(event)].length ? isSchedule = true : null );
-    console.log(isSchedule);
     return (
         <div>
             <ul className={styles.eventList}> 
