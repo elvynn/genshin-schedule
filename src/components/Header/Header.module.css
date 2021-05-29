@@ -45,4 +45,12 @@
     color: #504320;
     text-decoration: none;
     text-transform: uppercase;
+    cursor: pointer;
+}
+.ScheduleButton:hover{
+    background-color: #fdd156;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+.ScheduleButton:focus{
+    background-color: #e4b432;
 }

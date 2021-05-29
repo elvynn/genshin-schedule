@@ -136,7 +136,7 @@ const Login = () => {
                 </div>
                 <button className={styles.LoginButton}>{loginButton}</button>
             </form>
-            <button onClick={handleGuest}>Access without account</button> 
+            <button onClick={handleGuest} className={styles.Guest}>Access without account</button> 
 
         </div>
         <button onClick={setIsLogin} className={styles.Toggle}>{isLogin ? 'I want to create a new account' : 'I want to log in with an existing account'}</button>

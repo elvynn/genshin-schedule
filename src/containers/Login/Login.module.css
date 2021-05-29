@@ -45,7 +45,7 @@
     color: rgb(215, 53, 91);
 }
 
-.LoginButton{
+.LoginButton, .Guest{
     background-color: #ffc72e;
     border: 0px;
     text-align: center;
@@ -54,6 +54,17 @@
     font-family: "Baskerville", serif;
     text-transform: uppercase;
     display: block;
+    margin-bottom: 5px;
+    transition: all 0.3s ease-in;
+    cursor: pointer;
+}
+
+.LoginButton:hover, .Guest:hover{
+    background-color: #fdd156;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+.LoginButton:focus, .Guest:focus{
+    background-color: #e4b432;
 }
 .LoginButton>span{
     top: -10px;

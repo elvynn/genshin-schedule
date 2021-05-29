@@ -20,7 +20,7 @@ const EventList = (props) => {
                 {!isSchedule 
                     ? <li>
                         <div className={styles.eventInfo}>
-                            <p className="text-center m-0">No events for this day, <Link to="/characters">start adding your characters!</Link> (weapons soon)</p>
+                            <p className="text-center m-0">No events for this day, <Link to="/characters" className={styles.EventLink}>start adding your characters!</Link> (weapons soon)</p>
                         </div>
                      </li> 
                     : props.events.map( (event, key) => 
